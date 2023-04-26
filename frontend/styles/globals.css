@@ -24,5 +24,9 @@ a {
 }
 
 .primary-button {
-  @apply rounded bg-amber-300 py-2 px-4 shadow outline-none hover:bg-amber-400  active:bg-amber-500;
+  @apply rounded bg-cyan-700 py-2 px-4 shadow outline-none hover:bg-cyan-800 active:bg-cyan-900;
+}
+
+button {
+  color: whitesmoke;
 }
