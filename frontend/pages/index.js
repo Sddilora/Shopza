@@ -1,16 +1,15 @@
-import Head from "next/head";
+import Layout from "../components/Layout";
+import ProductItem from "../components/Productitem";
+import data from "../utils/data";
 
-function HomePage(props) {
+export default function Home() {
   return (
-    <div>
-      <Head>
-        <title>Home</title>
-        <meta name="description" content="This is the home page" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <h1 className="text-3xl font-bold text-center">Home Page</h1>
-    </div>
+    <Layout title="Home Page">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
+        {data.products.map((product) => (
+          <ProductItem product={product} key={product.slug}></ProductItem>
+        ))}
+      </div>
+    </Layout>
   );
 }
-
-export default HomePage;
