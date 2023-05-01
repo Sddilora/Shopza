@@ -7,6 +7,13 @@ import Cookies from 'js-cookie';
 
 export default function Layout({ title, children}) {
 
+  const session = getCookies();
+  console.log('session', session);
+  const userinfo = session["userinfo"];
+  console.log('session userinfo', userinfo);
+  const name = userinfo ? userinfo["given_name"] : "Login";
+  console.log('session name', name);
+
   const CART_URL = `${process.env.NEXT_PUBLIC_BACKEND_URL}/cart`;
   const { state } = useContext(Store);
   const { cart } = state;
@@ -42,7 +49,7 @@ export default function Layout({ title, children}) {
             <Link href="/profile" className="p-2">
               <Menu as="div" className="relative inline-block text-left">
                 <Menu.Button className="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-slate-500 rounded-md hover:bg-slate-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-                  {/* <span>{userName}</span> */}
+                  <span>{name}</span>
                 </Menu.Button>
                 <Menu.Items className="absolute right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                   <div className="px-1 py-1 ">
@@ -102,3 +109,23 @@ export default function Layout({ title, children}) {
     </div>
   </>;
 }
+
+const getCookies = () => {
+  const [parsedCookies, setParsedCookies] = useState('');
+
+  useEffect(() => {
+    const stringCookies = Cookies.get('session');
+    const unescapeCookies = stringCookies.replace(/\\054/g, ',').replace(/\\\"/g, '"');
+
+    try {
+      const parsedCookies = JSON.parse(unescapeCookies);
+      setParsedCookies(parsedCookies);
+    } catch (error) {
+      console.error('Error parsing cookies:', error);
+    }
+  }, []);
+
+  console.log('Parsed cookies:', parsedCookies);
+  return parsedCookies;
+};
+
