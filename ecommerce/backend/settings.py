@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import environ
+import os
 
 env = environ.Env()
 environ.Env.read_env()
@@ -29,11 +30,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
-    'django_nextjs',
+    'frontend',
+    'django_next',
     'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -122,8 +123,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
-
+STATIC_URL = 'frontend/.next/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'frontend', '.next', 'static'),
+]
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -132,3 +135,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH0_DOMAIN = env("AUTH0_DOMAIN")
 AUTH0_CLIENT_ID = env("AUTH0_CLIENT_ID")
 AUTH0_CLIENT_SECRET = env("AUTH0_CLIENT_SECRET")
+
+

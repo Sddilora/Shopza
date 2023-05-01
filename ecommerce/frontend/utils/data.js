@@ -1,3 +1,4 @@
+import nextImage from 'next/image';
 const data = {
     products: [
         {

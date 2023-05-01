@@ -1,11 +1,13 @@
 # Create your views here.
+from json import JSONEncoder
 from django_nextjs.render import render_nextjs_page_sync
-import json
 from authlib.integrations.django_client import OAuth
 from django.conf import settings
-from django.shortcuts import redirect, render, redirect
+from django.shortcuts import redirect, redirect
 from django.urls import reverse
 from urllib.parse import quote_plus, urlencode
+from urllib.parse import urlencode
+import json
 
 oauth = OAuth()
 
@@ -44,4 +46,6 @@ def logout(request):
     )
 
 def index(request):
-    return render_nextjs_page_sync(request)
+    response = render_nextjs_page_sync(request)
+    response.set_cookie("session", json.dumps(request.session.get("user")))
+    return response

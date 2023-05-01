@@ -1,3 +1,4 @@
 {
+  "env": {"browser": true, "es6": true, "node": true},
   "extends": ["eslint:recommended","next/babel", "next/core-web-vitals"]
 }

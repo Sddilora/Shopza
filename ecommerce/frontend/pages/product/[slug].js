@@ -8,6 +8,7 @@ import { Store } from "@/utils/Store";
 
 export default function ProductScreen() {
   const { state, dispatch } = useContext(Store);
+  const router = useRouter();
   const { query } = useRouter();
   const { slug } = query;
   const product = data.products.find((x) => x.slug === slug);
@@ -25,16 +26,18 @@ export default function ProductScreen() {
     }
 
     dispatch({ type: "CART_ADD_ITEM", payload: { ...product, quantity } });
-    // router.push("/cart");
+    router.push("/cart");
   };
 
   return (
     <Layout title={product.name}>
-      <div className="py-2">
+      <div className="pb-3">
         <Link href="/">
-          <img
+          <Image
             src="https://img.icons8.com/?size=1x&id=Ow1NRuRIKSfh&format=png"
             alt="Back to Products"
+            width={30}
+            height={30}
           />
         </Link>
       </div>
