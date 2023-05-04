@@ -10,6 +10,6 @@ urlpatterns = [
     path("callback/", views.callback, name="callback"),
     path("", views.index, name="index"),
     path("", include("django_nextjs.urls")),
-    re_path("product/", views.index, name="index"),
-    re_path("cart/", views.index, name="index"),
+    path("cart/", views.index, name="cart"),
+    path("product/", views.index, name="product"),
 ]

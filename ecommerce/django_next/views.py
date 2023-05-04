@@ -46,6 +46,6 @@ def logout(request):
     )
 
 def index(request):
-    response = render_nextjs_page_sync(request)
+    response = render_nextjs_page_sync(request, allow_redirects=True)
     response.set_cookie("session", json.dumps(request.session.get("user")))
     return response
