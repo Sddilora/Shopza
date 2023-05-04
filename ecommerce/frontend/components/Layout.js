@@ -25,7 +25,7 @@ export default function Layout({ title, children }) {
       <Head>
         <title>{title ? title + " - SD" : "SD"}</title>
         <meta name="description" content="Ecommerce Website" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="https://img.icons8.com/?size=1x&id=oQZiODxTvE5b&format=png" />
       </Head>
 
       <div className="flex min-h-screen flex-col justify-between ">
