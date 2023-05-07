@@ -10,7 +10,7 @@ export default function ProductItem({ product }) {
         <img
           src={product.image}
           alt={product.name}
-          className="rounded shadow h-[358.2px]"
+          className="rounded shadow"
         />
 
       </Link>
@@ -21,7 +21,7 @@ export default function ProductItem({ product }) {
 
         </Link>
         <p className="mb-2">{product.brand}</p>
-        <p>${product.price}</p>
+        <p className='font-semibold mb-1'>{product.price} ₺</p>
         <button className="primary-button" type="button">
           Add to cart
         </button>

@@ -29,6 +29,15 @@ switch (action.type) {
         );
         return { ...state, cart: { ...state.cart, cartItems } };
     }
+    case 'Cart_RESET':
+        return {
+            ...state,
+            cart: {
+                cartItems: [],
+                shippingAddress:{ location: {}},
+                PaymentMethod:'',
+             },
+            };
     default:
         return state;
     }

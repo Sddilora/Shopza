@@ -4,6 +4,7 @@ import Link from "next/link";
 import React, { useContext, useEffect, useState } from "react";
 import { Menu } from "@headlessui/react";
 import Cookies from "js-cookie";
+import DropdownLink from "./DropdownLink";
 
 export default function Layout({ title, children }) {
   const session = getCookies();
@@ -13,12 +14,18 @@ export default function Layout({ title, children }) {
   const name = userinfo ? userinfo["given_name"] : "My Page";
   console.log("session name", name);
 
-  const { state } = useContext(Store);
+  const { state, dispatch } = useContext(Store);
   const { cart } = state;
   const [cartItemsCount, setCartItemsCount] = useState(0);
   useEffect(() => {
     setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
   }, [cart.cartItems]);
+
+  const logoutClickHandler = () => {
+    Cookies.remove("cart");
+    dispatch({ type: "CART_RESET" });
+  };
+
 
   return (
     <>
@@ -31,7 +38,7 @@ export default function Layout({ title, children }) {
       <div className="flex min-h-screen flex-col justify-between ">
         <header>
           <nav className="flex h-12 items-center px-4 justify-between shadow-md">
-            <Link href="/" className="text-lg font-bold">
+            <Link href="/" className="text-lg font-bold text-slate-600">
               SDD
             </Link>
             <div>
@@ -48,7 +55,7 @@ export default function Layout({ title, children }) {
               <Link href="/profile" className="p-2">
                 <Menu as="div" className="relative inline-block text-left">
                   <Menu.Button className="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-slate-500 rounded-md hover:bg-slate-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-                    <span>{name}</span>
+                    {name}
                   </Menu.Button>
                   <Menu.Items className="absolute right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <div className="px-1 py-1 ">
@@ -105,6 +112,7 @@ export default function Layout({ title, children }) {
                           {({ active }) => (
                             <Link legacyBehavior href="/logout">
                               <a
+                                onClick={() => {logoutClickHandler()}}
                                 className={`${
                                   active
                                     ? "bg-slate-500 text-white"

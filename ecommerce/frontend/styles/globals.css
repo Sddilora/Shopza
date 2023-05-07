@@ -30,3 +30,7 @@ a {
 button {
   color: whitesmoke;
 }
+
+/* .dropdown-link {
+  @apply flex p-2 hover: bg-cyan-700
+} */
