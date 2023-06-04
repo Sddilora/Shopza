@@ -1,4 +1,4 @@
-# SD Shopping
+# Shopza Shopping
 This is an e-commerce project developed using Django and Next.js. It provides a platform for present products online.
 
 ## Features
