@@ -1,4 +1,7 @@
 # Shopza Shopping
+<img width="336" height="164" alt="shopza-logo" src="https://github.com/user-attachments/assets/84d0f805-41ce-44a5-9f86-b1a662aa6022" />
+
+
 This is an e-commerce project developed using Django and Next.js. It provides a platform for present products online.
 
 ## Features
